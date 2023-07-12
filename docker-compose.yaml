@@ -1,0 +1,29 @@
+version: '3.6'
+
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ee:latest'
+
+    hostname: 'gitlab.local.dev'
+
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.local.dev'
+        nginx['listen_port'] = 80
+        nginx['listen_https'] = false
+        nginx['proxy_set_headers'] = {
+          'X-Forwarded-Proto' => 'https',
+          'X-Forwarded-Ssl' => 'on'
+        }
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+
+    ports:
+      - '2280:80'
+      - '2222:22'
+
+    volumes:
+      - './config:/etc/gitlab'
+      - './logs:/var/log/gitlab'
+      - './data:/var/opt/gitlab'
+
+    shm_size: '256m'
