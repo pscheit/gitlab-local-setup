@@ -1,0 +1,24 @@
+{
+    "name": "packagist/gitlab-test-client",
+    "require": {
+        "m4tthumphrey/php-gitlab-api": "^11.11",
+        "symfony/http-client": "^6.3",
+        "nyholm/psr7": "^1.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packagist\\GitlabTestClient\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Philipp Scheit",
+            "email": "p.scheit@ps-webforge.com"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
